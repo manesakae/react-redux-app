@@ -37,6 +37,7 @@ export default function AddBookWithValidation() {
 
     const submitForm = () => {
         dispatch(bookAdd({ ...formValues, id: nanoid() }))
+        setFormValues(initialFormValues)
     }
 
     useEffect(() => {

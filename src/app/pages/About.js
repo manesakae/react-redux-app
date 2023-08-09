@@ -3,8 +3,8 @@ import React from 'react'
 function About() {
     return (
         <div>
-            About
-            todo: async fet api, multiple reducer
+            <h4>About Page</h4>
+            todo:  architechture , edit form
         </div>
     )
 }

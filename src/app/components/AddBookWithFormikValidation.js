@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import addBookSchema from '../FormValidatorSchema/addbookSchema';
+import addBookSchema from '../formValidatorSchema/addbookSchema';
 import { useDispatch } from 'react-redux';
 import { bookAdd } from '../reducers/booksSlice';
 import { nanoid } from '@reduxjs/toolkit';

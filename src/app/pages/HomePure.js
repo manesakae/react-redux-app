@@ -13,7 +13,7 @@ class HomePure extends Component {
     render() {
         return (
             <div>
-                <p>Home Pure Page</p>
+                <h4>Home Pure Page</h4>
                 <AddBook />
 
                 <h4>Book Lists </h4>
