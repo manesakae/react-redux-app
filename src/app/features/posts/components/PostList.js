@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import useFetch from "../hooks/useFetch"
+import useFetch from "../../../hooks/useFetch"
 
 export default function PostList() {
-    const { users } = useSelector(state => state.userList);
     const { data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/posts');
     const [posts, setPosts] = useState([]);
 
@@ -38,7 +36,6 @@ export default function PostList() {
                 })}
             </ul>
 
-            <p>User Count from store: {users.length}</p>
         </div>
     )
 }

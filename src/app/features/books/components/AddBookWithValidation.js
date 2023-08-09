@@ -1,7 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { bookAdd } from '../reducers/booksSlice';
+import { bookAdd } from '../../../services/reducers/booksSlice';
 
 export default function AddBookWithValidation() {
     const initialFormValues = {
