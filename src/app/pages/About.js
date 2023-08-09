@@ -2,7 +2,10 @@ import React from 'react'
 
 function About() {
     return (
-        <div>About Page</div>
+        <div>
+            About
+            todo: async fet api, multiple reducer
+        </div>
     )
 }
 

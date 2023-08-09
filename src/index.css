@@ -12,3 +12,12 @@ code {
     monospace;
 } */
 
+.error {
+  color: red;
+}
+.input-error{
+  border: 0.5px solid red;
+}
+.disabled-btn{
+  background-color: lightgray;
+}

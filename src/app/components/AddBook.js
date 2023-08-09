@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { bookAdd } from '../booksSlice';
+import { bookAdd } from '../reducers/booksSlice';
 import { nanoid } from '@reduxjs/toolkit'
 
 function AddBook() {
@@ -9,7 +9,6 @@ function AddBook() {
     const [author, setAuthor] = useState('');
     const [price, setPrice] = useState(0);
 
-    // todo: use yup and formik for form validation
     const handleSubmit = (event) => {
         event.preventDefault();
         if (title && author && price) {
