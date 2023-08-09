@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
+
+import PublicRoutes from "./app/routes/PublicRoutes";
+import PrivateRoutes from "./app/routes/PrivateRoutes";
+import Main from "./app/pages/Main";
+import Login from "./app/pages/Login";
+import About from "./app/pages/About";
+import Books from "./app/features/books/Books";
+import Posts from "./app/features/posts/Posts";
+import Home from "./app/features/home/Home";
+import BookPure from "./app/features/books/BookPure";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Main />} exact>
+            <Route index element={<Home />} />
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/bookpure" element={<BookPure />} />
+          </Route>
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+        <Route element={<PublicRoutes />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
