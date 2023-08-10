@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = [
     {
-        id: 1,
+        id: nanoid(),
         title: "Book1",
         author: "author1",
         price: 100
     },
     {
-        id: 2,
+        id: nanoid(),
         title: "Book2",
         author: "author2",
         price: 220
@@ -27,9 +27,16 @@ const booksSlice = createSlice({
         bookDelete(state, action) {
             const { payload: id } = action;
             return state.filter(book => book.id !== id)
+        },
+        bookUpdate(state, action) {
+            const { payload: updatedBook } = action
+            return state.map((book) => {
+                if (book.id === updatedBook.id) return { ...book, ...updatedBook };
+                else return book;
+            });
         }
     }
 });
 
-export const { bookAdd, bookDelete } = booksSlice.actions
+export const { bookAdd, bookDelete, bookUpdate } = booksSlice.actions
 export default booksSlice.reducer

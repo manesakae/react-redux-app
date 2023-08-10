@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AddBook from './components/AddBook'
 import BookCard from './components/BookCard'
+import Stack from 'react-bootstrap/Stack';
 
 class BookPure extends Component {
     // constructor(props) {
@@ -17,11 +18,11 @@ class BookPure extends Component {
                 <AddBook />
 
                 <h4>Book Lists </h4>
-                <ul>
+                <Stack direction="horizontal" gap={3}>
                     {this.props.books.map((book) => {
                         return <BookCard key={book.id} book={book} />
                     })}
-                </ul>
+                </Stack>
             </div>
         )
     }

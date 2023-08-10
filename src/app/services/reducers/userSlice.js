@@ -13,11 +13,15 @@ const userSlice = createSlice({
         login: (state, action) => {
             const { payload: user } = action;
             return { ...user, isLoggedIn: true };
+        },
+        logout: (state, action) => {
+            const { payload: user } = action;
+            return { ...state, isLoggedIn: false };
         }
 
     }
 });
 
-export const { login } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 
 export default userSlice.reducer;
