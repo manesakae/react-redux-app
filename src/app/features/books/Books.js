@@ -31,6 +31,7 @@ export default function Books() {
             <AddBookWithValidation />
             <br />
             <AddBookWithFormikValidation selectedBook={selectedBook} editCancel={onEditCancel} />
+            <br />
             <BookList selectBookCallback={selectBookCallback} />
         </div>
     )

@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from "../../../hooks/useFetch"
 import ListGroup from 'react-bootstrap/ListGroup';
+import Loader from '../../../components/Loader';
 
-export default function PostList() {
+export default function PostListWithUseFetch() {
     const url = 'https://jsonplaceholder.typicode.com/posts';
-    const [posts, setPosts] = useState([]);
+    const { data, loading, error } = useFetch(url);
 
-    useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setPosts(data))
-    }, [posts])
+    if (loading) {
+        return (<Loader />);
+    }
+
+    if (error) {
+        return (<span>Something went wrong</span>);
+    }
 
     return (
         <div>
-            <h5>Post List</h5>
+            <h5>Post List Using useFetch</h5>
             <ListGroup>
-                {posts.map((post) => {
+                {data && data.map((post) => {
                     return (<ListGroup.Item key={post.id}>{post.title}</ListGroup.Item>)
                 })}
             </ListGroup>
+            <br />
         </div>
     )
 }

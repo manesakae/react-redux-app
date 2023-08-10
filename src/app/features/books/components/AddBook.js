@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit'
 import { bookAdd } from '../../../services/reducers/booksSlice';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 
 function AddBook() {
     const dispatch = useDispatch();
@@ -26,24 +30,41 @@ function AddBook() {
     return (
         <div>
             <h5>Add Book</h5>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label> Title
-                        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    </label>
-                </div>
-                <div>
-                    <label> Author
-                        <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
-                    </label>
-                </div>
-                <div>
-                    <label> Price
-                        <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
-                    </label>
-                </div>
-                <button type="submit">Add Book</button>
-            </form>
+            <Form noValidate onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} md="4">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4">
+                        <Form.Label>Author</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Author name"
+                            value={author}
+                            onChange={(e) => setAuthor(e.target.value)}
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type="number"
+                            placeholder="Enter price"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                </Row>
+                <Button type="submit">Add</Button>
+            </Form>
         </div>
     )
 }

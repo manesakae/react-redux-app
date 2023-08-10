@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = [
     {
-        id: 1,
+        id: nanoid(),
         title: "Book1",
         author: "author1",
         price: 100
     },
     {
-        id: 2,
+        id: nanoid(),
         title: "Book2",
         author: "author2",
         price: 220

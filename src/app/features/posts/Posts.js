@@ -1,11 +1,12 @@
 import React from 'react'
 import PostList from './components/PostList'
+import PostListWithUseFetch from './components/PostListWithUseFetch'
 
 export default function Posts() {
     return (
-        <div>
-            <h4>Post Page</h4>
+        <>
+            <PostListWithUseFetch />
             <PostList />
-        </div>
+        </>
     )
 }
