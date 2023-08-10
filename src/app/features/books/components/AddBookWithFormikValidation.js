@@ -1,24 +1,38 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import addBookSchema from '../formValidatorSchema/addbookSchema';
 import { useDispatch } from 'react-redux';
-import { bookAdd } from '../../../services/reducers/booksSlice';
+import { bookAdd, bookUpdate } from '../../../services/reducers/booksSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
-const initialFormValues = {
-    title: "",
-    author: "",
-    price: 0
-}
-
-export default function AddBookWithFormikValidation() {
+export default function AddBookWithFormikValidation({ selectedBook, editCancel }) {
+    const defaultFormValue = {
+        title: "",
+        author: "",
+        price: 0
+    }
     const dispatch = useDispatch();
+    const [initialValues, setInitialValues] = useState(defaultFormValue)
+    const [isAddMode, setIsAddMode] = useState(true)
+
+    useEffect(() => {
+        setIsAddMode(selectedBook?.id ? false : true)
+        const initialFormValues = selectedBook?.id ? selectedBook : defaultFormValue;
+        setInitialValues(initialFormValues)
+    }, [selectedBook])
+
+
     return (
         <Formik
-            initialValues={initialFormValues}
+            initialValues={initialValues}
+            enableReinitialize={true}
             validationSchema={addBookSchema}
             onSubmit={(values, { resetForm }) => {
-                dispatch(bookAdd({ ...values, id: nanoid() }));
+                if (isAddMode) {
+                    dispatch(bookAdd({ ...values, id: nanoid() }));
+                } else {
+                    dispatch(bookUpdate({ ...values }));
+                }
                 resetForm();
             }}
         >
@@ -26,7 +40,7 @@ export default function AddBookWithFormikValidation() {
                 const { errors, touched, isValid, dirty } = formik;
                 return (
                     <div>
-                        <h5>Add Book With Formik Validation</h5>
+                        <h5>{isAddMode ? "Add" : "Edit"} Book With Formik Validation</h5>
                         <Form>
                             <div>
                                 <label> Title
@@ -48,7 +62,13 @@ export default function AddBookWithFormikValidation() {
                             </div>
                             <button type="submit"
                                 className={!(dirty && isValid) ? "disabled-btn" : ""}
-                                disabled={!(dirty && isValid)}>Add Book</button>
+                                disabled={!(dirty && isValid)}>{isAddMode ? "Add" : "Edit"} Book</button>
+                            <button type="btn" onClick={() => {
+                                formik.resetForm()
+                                editCancel()
+                            }
+
+                            }>Cancel</button>
                         </Form>
                     </div>
                 );
