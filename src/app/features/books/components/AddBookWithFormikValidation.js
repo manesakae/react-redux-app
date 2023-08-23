@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import { Stack } from 'react-bootstrap';
 
 export default function AddBookWithFormikValidation({ selectedBook, editCancel }) {
     const defaultFormValue = {
@@ -119,19 +120,22 @@ export default function AddBookWithFormikValidation({ selectedBook, editCancel }
                                     <ErrorMessage name="price" component="span" className='error' />
                                 </Form.Group>
                             </Row>
-                            <Button type="submit"
-                                className={!(dirty && isValid) ? "disabled-btn" : ""}
-                                disabled={!(dirty && isValid)}>
-                                {isAddMode ? "Add" : "Edit"} Book
-                            </Button>
+                            <Stack direction="horizontal" gap={3}>
+                                <Button type="submit"
+                                    className={!(dirty && isValid) ? "disabled-btn" : ""}
+                                    disabled={!(dirty && isValid)}>
+                                    {isAddMode ? "Add" : "Edit"} Book
+                                </Button>
 
-                            <Button type="button"
-                                onClick={() => {
-                                    resetForm()
-                                    editCancel()
-                                }}>
-                                Cancel
-                            </Button>
+                                <Button type="button" className=''
+                                    onClick={() => {
+                                        resetForm()
+                                        editCancel()
+                                    }}>
+                                    Cancel
+                                </Button>
+                            </Stack>
+
                         </Form>
                     </div>
                 );
