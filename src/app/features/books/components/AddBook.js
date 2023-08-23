@@ -29,7 +29,6 @@ function AddBook() {
     }
     return (
         <div>
-            <h5>Add Book</h5>
             <Form noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} md="4">
@@ -63,7 +62,7 @@ function AddBook() {
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                 </Row>
-                <Button type="submit">Add</Button>
+                <Button type="submit" className='mb-5'>Add</Button>
             </Form>
         </div>
     )

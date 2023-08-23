@@ -10,7 +10,7 @@ export default function PostList() {
         fetch(url)
             .then(res => res.json())
             .then(data => setPosts(data))
-    }, [posts])
+    }, [])
 
     return (
         <div>
