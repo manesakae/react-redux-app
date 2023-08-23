@@ -1,9 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Outlet, Navigate } from 'react-router-dom'
 
 const PublicRoutes = () => {
-    const { isLoggedIn } = useSelector(state => state.user)
+    const isLoggedIn = localStorage.getItem('loggedInUser') ? true : false;
 
     return (
         !isLoggedIn ? <Outlet /> : <Navigate to="/" />

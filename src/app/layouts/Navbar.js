@@ -1,25 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../services/reducers/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function ResponsiveNavbar() {
-    const user = useSelector(state => state.user)
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const username = localStorage.getItem("loggedInUser");
     const handleLogout = () => {
         localStorage.clear();
-        dispatch(logout())
+        navigate('/login');
     }
     return (
-        // <nav>
-        //     <ul>
-        //         <li><Link to="/">Home</Link></li>
-        //         <li><Link to="/bookpure">BookPure</Link></li>
-        //         <li><Link to="/posts">Posts</Link></li>
-        //         <li><Link to="/books">Books</Link></li>
-        //         <li><Link to="/about">About</Link></li>
-        //     </ul>
-        // </nav>
         <Navbar bg="primary" collapseOnSelect expand="sm" data-bs-theme="dark">
             <Container>
                 <Navbar.Brand href="/">React Demo Site</Navbar.Brand>
@@ -34,7 +24,7 @@ function ResponsiveNavbar() {
                     </Nav>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            Signed in as: {user.name}
+                            Signed in as: {username}
                         </Navbar.Text>&nbsp;
                     </Navbar.Collapse>
                     <Button variant="primary" onClick={handleLogout}>Logout</Button>
